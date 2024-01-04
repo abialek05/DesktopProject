@@ -1,0 +1,75 @@
+﻿<local:OneViewBase x:Class="Project.Views.NewMagazynView"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Project.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <ResourceDictionary Source="TabResources.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>   
+    
+        <StackPanel Margin="8" VerticalAlignment="Top" HorizontalAlignment="Left">
+            
+            <Label Content="Nazwa magazynu: " Grid.Row="0" Margin="3,3,3,3"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=NazwaMagazynu, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Validation.ErrorTemplate="{StaticResource ValidationTemplate}" ToolTipService.IsEnabled="False"/>
+
+            <Label Content="Rodzaj magazynu: " Grid.Row="1" Margin="3,3,3,3"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=RodzajMagazynu, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="Opis: " Grid.Row="2" Margin="3,3,3,3"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Opis, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="Uwagi: " Grid.Row="2" Margin="3,3,3,3"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Uwagi, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="8" VerticalAlignment="Top" HorizontalAlignment="Left">
+
+            <Label Content="Kraj: " />
+            <TextBox Text="{Binding Path=Kraj, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Validation.ErrorTemplate="{StaticResource ValidationTemplate}" ToolTipService.IsEnabled="False"/>
+
+            <Label Content="Miasto: " />
+            <TextBox Text="{Binding Path=Miasto, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Validation.ErrorTemplate="{StaticResource ValidationTemplate}" ToolTipService.IsEnabled="False"/>
+
+            <Label Content="Kod Pocztowy: "/>
+            <TextBox Text="{Binding Path=KodPocztowy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Validation.ErrorTemplate="{StaticResource ValidationTemplate}" ToolTipService.IsEnabled="False"/>
+
+            <Label Content="Wojewodztwo: " Grid.Row="2"/>
+            <ComboBox HorizontalAlignment="left" Width="250" Height="30"
+                                      ItemsSource="{Binding WojewodztwoComboBoxItems}"
+                                      DisplayMemberPath="Value"
+                                      SelectedValuePath="Key"
+                                      SelectedValue="{Binding Path = Nazwa}"/>            
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Margin="8" VerticalAlignment="Top" HorizontalAlignment="Left">
+
+            <Label Content="Ulica: " Grid.Row="0" Margin="3,3,3,3"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Ulica, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="Numer ulicy: " Grid.Row="1" Margin="3,3,3,3"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=NumerUlicy, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="Numer budynku: " Grid.Row="2" Margin="3,3,3,3"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=NumerBudynku, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="Poczta: " Grid.Row="2" Margin="3,3,3,3"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Poczta, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </StackPanel>
+
+    </Grid>
+</local:OneViewBase>

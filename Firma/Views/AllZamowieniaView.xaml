@@ -1,0 +1,36 @@
+﻿<local:AllViewBase x:Class="Project.Views.AllZamowieniaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Project.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <ResourceDictionary Source="TabResources.xaml"/>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="500"/>
+            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>        
+            <DataGrid AutoGenerateColumns="False" Width="Auto" Height="Auto" VerticalAlignment="Top" ItemsSource="{Binding List}" SelectedItem="{Binding Path=ChosenZamowienie, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Path=IdZamowienia}"/>
+                    <DataGridTextColumn Header="Numer zamówienia" Binding="{Binding Path=NumerZamowienia}"/>
+                    <DataGridTextColumn Header="Wartość zamówienia" Binding="{Binding Path=Wartosc}"/>
+                    <DataGridTextColumn Header="Data złożenia" Binding="{Binding Path=DataZlozenia}"/>
+                    <DataGridTextColumn Header="Data realizacji" Binding="{Binding Path=DataRealizacji}"/>
+                    <DataGridTextColumn Header="Kontrahent" Binding="{Binding Path=NazwaKontrahenta}"/>
+                    <DataGridTextColumn Header="Nazwa towaru" Binding="{Binding Path=NazwaTowaru}"/>
+                    <DataGridTextColumn Header="Nazwa magazynu" Binding="{Binding Path=NazwaMagazynu}"/>
+                    <DataGridTextColumn Header="Opłacone" Binding="{Binding Path=CzyOplacone}"/>
+                    <DataGridTextColumn Header="Potwierdzone" Binding="{Binding Path=CzyPotwierdzone}"/>
+                </DataGrid.Columns>
+            </DataGrid>        
+    </Grid>
+    </ScrollViewer>
+</local:AllViewBase>

@@ -1,0 +1,109 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net48</TargetFramework>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<ItemGroup>
+		
+		<None Remove="Models\InvoicesModel.edmx" />
+
+		<None Remove="Views\backgroundMenu.png" />
+		<None Remove="Views\Views\menuList.png" />
+		<None Remove="Views\projIcon2.png" />
+		<None Remove="Views\termbaseIcon.png" />
+		<None Remove="Views\calculator16px.png" />
+		<None Remove="Views\calculator32px.png" />
+		<None Remove="Views\calendar16px.png" />
+		<None Remove="Views\profit16px.png" />
+		<None Remove="Views\profit32px.png" />
+		<None Remove="Views\client16px.png" />
+		<None Remove="Views\client64px.png" />
+		<None Remove="Views\allClients16px.png" />
+		<None Remove="Views\allClients64px.png" />
+		<None Remove="Views\allprojects16px.png" />
+		<None Remove="Views\allprojects64px.png" />
+		<None Remove="Views\addDatabase16px.png" />
+		<None Remove="Views\addDatabase64px.png" />
+		<None Remove="Views\addProject16px.png" />
+		<None Remove="Views\addProject64px.png" />
+		<None Remove="Views\add-product.png" />
+		<None Remove="Views\pricelist.png" />
+		<None Remove="Views\products-all.png" />
+		<None Remove="Views\pricelist-all.png" />
+		<None Remove="Views\magazyn-add.png" />
+		<None Remove="Views\magazyn-all.png" />
+		
+		
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EntityDeploy Include="Models\Entities\InvoicesModel.edmx">
+	    <Generator>EntityModelCodeGenerator</Generator>
+	    <LastGenOutput>InvoicesModel.Designer.cs</LastGenOutput>
+	  </EntityDeploy>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="EntityFramework" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100" />
+	  <PackageReference Include="MvvmLight" Version="5.4.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="System.Security" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Views\Icons\backgroundMenu.png" />
+		<Resource Include="Views\Icons\menuList.png" />
+		<Resource Include="Views\Icons\projIcon2.png" />
+		<Resource Include="Views\Icons\termbaseIcon.png" />
+		<Resource Include="Views\Icons\calculator16px.png" />
+		<Resource Include="Views\Icons\calculator32px.png" />
+		<Resource Include="Views\Icons\calendar16px.png" />
+		<Resource Include="Views\Icons\profit16px.png" />
+		<Resource Include="Views\Icons\profit32px.png" />
+		<Resource Include="Views\Icons\client16px.png" />
+		<Resource Include="Views\Icons\client64px.png" />
+		<Resource Include="Views\Icons\allClients16px.png" />
+		<Resource Include="Views\Icons\allClients64px.png" />
+		<Resource Include="Views\Icons\allprojects16px.png" />
+		<Resource Include="Views\Icons\allprojects64px.png" />
+		<Resource Include="Views\Icons\addDatabase16px.png" />
+		<Resource Include="Views\Icons\addDatabase64px.png" />
+		<Resource Include="Views\Icons\addProject16px.png" />
+		<Resource Include="Views\Icons\addProject64px.png" />
+		<Resource Include="Views\Icons\add-product.png" />
+		<Resource Include="Views\Icons\pricelist.png" />
+		<Resource Include="Views\Icons\products-all.png" />
+		<Resource Include="Views\Icons\pricelist-all.png" />
+		<Resource Include="Views\Icons\magazyn-add.png" />
+		<Resource Include="Views\Icons\magazyn-all.png" />
+		
+		
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Models\Entities\InvoicesModel.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>InvoicesModel.edmx</DependentUpon>
+		</Compile>
+		<Compile Update="ViewResources\GlobalResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>GlobalResources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="ViewResources\GlobalResources.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+</Project>

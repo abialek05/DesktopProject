@@ -1,0 +1,25 @@
+﻿<local:AllViewBase x:Class="Project.Views.AdresView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Project.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Margin="8"  Height="175" Width="670" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" Height="100">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Kraj" Binding="{Binding Path=Kraj}" Width="50"/>
+                    <DataGridTextColumn Header="Miasto" Binding="{Binding Path=Miasto}" Width="100"/>
+                    <DataGridTextColumn Header="Województwo" Binding="{Binding Path=Wojewodztwo}" Width="100"/>
+                    <DataGridTextColumn Header="Gmina" Binding="{Binding Path=Gmina}" Width="100"/>
+                    <DataGridTextColumn Header="Kod Pocztowy" Binding="{Binding Path=KodPocztowy}" Width="90"/>
+                    <DataGridTextColumn Header="Nazwa Ulicy" Binding="{Binding Path=NazwaUlicy}" />
+                    <DataGridTextColumn Header="Nr Budynku" Binding="{Binding Path=NumerBudynku}" />
+                    <DataGridTextColumn Header="Poczta" Binding="{Binding Path=Poczta}" Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</local:AllViewBase>

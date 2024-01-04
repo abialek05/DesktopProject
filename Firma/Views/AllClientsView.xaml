@@ -1,0 +1,32 @@
+﻿<local:AllViewBase x:Class="Project.Views.AllClientsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Project.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1100" Background="White">
+    <UserControl.Resources>
+        <ResourceDictionary Source="TabResources.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" SelectedItem="{Binding Path=ChosenClient, Mode=TwoWay}" Width="Auto" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Path=IdKontrahenta}" Width="30"/>
+                    <DataGridTextColumn Header="Nazwa" Binding="{Binding Path=NazwaKontrahenta}" Width="150"/>
+                    <DataGridTextColumn Header="Kod" Binding="{Binding Path=KodKontrahenta}" Width="70"/>
+                    <DataGridTextColumn Header="Rodzaj działalności" Binding="{Binding Path=RodzajDzialalnosciNazwa}" Width="150"/>
+                    <DataGridTextColumn Header="Branża" Binding="{Binding Path=BranzaNazwa}" Width="150"/>
+                    <DataGridTextColumn Header="NIP" Binding="{Binding Path=NIP}" Width="100"/>
+                    <DataGridTextColumn Header="REGON" Binding="{Binding Path=REGON}" Width="100"/>
+                    <DataGridTextColumn Header="PESEL" Binding="{Binding Path=PESEL}" Width="100"/>
+            </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+</local:AllViewBase>

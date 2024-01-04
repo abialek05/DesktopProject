@@ -1,0 +1,1970 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InvoicesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branza">
+          <Key>
+            <PropertyRef Name="IdBranzy" />
+          </Key>
+          <Property Name="IdBranzy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaBranzy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KodBranzy" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyAktywna" Type="bit" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cennik">
+          <Key>
+            <PropertyRef Name="IdCennika" />
+          </Key>
+          <Property Name="IdCennika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaCennika" Type="varchar" MaxLength="50" />
+          <Property Name="IdTowaru" Type="int" />
+          <Property Name="IdRodzajuCennika" Type="int" />
+          <Property Name="Cena" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DataObowiazywaniaOd" Type="date" />
+          <Property Name="DataObowiazywaniaDo" Type="date" />
+          <Property Name="CzyAktywny" Type="bit" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="80" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="IdFaktury" />
+          </Key>
+          <Property Name="IdFaktury" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumerFaktury" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdKontrahenta" Type="int" />
+          <Property Name="IdKategoriiFaktury" Type="int" />
+          <Property Name="IdPozycjiFaktury" Type="int" />
+          <Property Name="IdSposobuPlatnosci" Type="int" />
+          <Property Name="DataWystawienia" Type="date" />
+          <Property Name="DataSprzedazy" Type="date" />
+          <Property Name="TerminPlatnosci" Type="date" />
+          <Property Name="CzyAktywna" Type="bit" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+          <Property Name="IloscTowaru" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IdCennika" Type="int" />
+          <Property Name="Kwota" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IdTowaru" Type="int" />
+        </EntityType>
+        <EntityType Name="GrupaTowaru">
+          <Key>
+            <PropertyRef Name="IdGrupyTowaru" />
+          </Key>
+          <Property Name="IdGrupyTowaru" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaGrupyTowaru" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kod" Type="nchar" MaxLength="10" />
+          <Property Name="CzyAktywna" Type="bit" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <EntityType Name="JednostkaPodstawowa">
+          <Key>
+            <PropertyRef Name="IdJednostkiPodstawowej" />
+          </Key>
+          <Property Name="IdJednostkiPodstawowej" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaJednostki" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="KodJednostki" Type="nvarchar" MaxLength="10" />
+          <Property Name="CzyAktywny" Type="bit" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <EntityType Name="KategoriaFaktury">
+          <Key>
+            <PropertyRef Name="IdKategoriiFaktury" />
+          </Key>
+          <Property Name="IdKategoriiFaktury" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaKategorii" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KodKategorii" Type="nchar" MaxLength="10" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyAktywna" Type="bit" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <EntityType Name="Kontrahent">
+          <Key>
+            <PropertyRef Name="IdKontrahenta" />
+          </Key>
+          <Property Name="IdKontrahenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaKontrahenta" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KodKontrahenta" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdRodzajuDzialalnosci" Type="int" />
+          <Property Name="IdBranzy" Type="int" />
+          <Property Name="CzyAktywny" Type="bit" />
+          <Property Name="NIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="REGON" Type="nvarchar" MaxLength="50" />
+          <Property Name="PESEL" Type="nvarchar" MaxLength="50" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="80" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+          <Property Name="Telefon" Type="varchar" MaxLength="20" />
+          <Property Name="Fax" Type="varchar" MaxLength="20" />
+          <Property Name="AdresWWW" Type="varchar" MaxLength="254" />
+          <Property Name="Kraj" Type="varchar" MaxLength="50" />
+          <Property Name="Miasto" Type="varchar" MaxLength="50" />
+          <Property Name="Wojewodztwo" Type="varchar" MaxLength="50" />
+          <Property Name="KodPocztowy" Type="varchar" MaxLength="10" />
+          <Property Name="Ulica" Type="varchar" MaxLength="50" />
+          <Property Name="NumerUlicy" Type="varchar" MaxLength="10" />
+          <Property Name="NumerBudynku" Type="varchar" MaxLength="10" />
+          <Property Name="Poczta" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Magazyn">
+          <Key>
+            <PropertyRef Name="IdMagazynu" />
+          </Key>
+          <Property Name="IdMagazynu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaMagazynu" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RodzajMagazynu" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyAktywny" Type="bit" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="80" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+          <Property Name="Kraj" Type="varchar" MaxLength="50" />
+          <Property Name="Miasto" Type="varchar" MaxLength="50" />
+          <Property Name="Wojewodztwo" Type="varchar" MaxLength="50" />
+          <Property Name="KodPocztowy" Type="varchar" MaxLength="10" />
+          <Property Name="Ulica" Type="varchar" MaxLength="50" />
+          <Property Name="NumerUlicy" Type="varchar" MaxLength="10" />
+          <Property Name="NumerBudynku" Type="varchar" MaxLength="10" />
+          <Property Name="Poczta" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PozycjaFaktury">
+          <Key>
+            <PropertyRef Name="IdPozycjiFaktury" />
+          </Key>
+          <Property Name="IdPozycjiFaktury" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTowaru" Type="int" />
+          <Property Name="CenaNetto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CenaBrutto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rabat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CzyAktywna" Type="bit" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="80" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <EntityType Name="RodzajCennika">
+          <Key>
+            <PropertyRef Name="IdRodzajuCennika" />
+          </Key>
+          <Property Name="IdRodzajuCennika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaRodzajuCennika" Type="varchar" MaxLength="100" />
+          <Property Name="Opis" Type="varchar" MaxLength="100" />
+          <Property Name="Uwagi" Type="varchar" MaxLength="100" />
+          <Property Name="KtoDodal" Type="date" />
+          <Property Name="KtoZmodyfikowal" Type="date" />
+          <Property Name="KtoUsunal" Type="date" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+          <Property Name="CzyAktywny" Type="bit" />
+        </EntityType>
+        <EntityType Name="RodzajDzialalnosci">
+          <Key>
+            <PropertyRef Name="IdRodzajuDzialalnosci" />
+          </Key>
+          <Property Name="IdRodzajuDzialalnosci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaRodzajuDzialalnosci" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="CzyAktywny" Type="bit" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="80" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <EntityType Name="SposobPlatnosci">
+          <Key>
+            <PropertyRef Name="IdSposobuPlatnosci" />
+          </Key>
+          <Property Name="IdSposobuPlatnosci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaSposobuPlatnosci" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="CzyAktywny" Type="bit" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="80" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Towar">
+          <Key>
+            <PropertyRef Name="IdTowaru" />
+          </Key>
+          <Property Name="IdTowaru" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KodTowaru" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NazwaTowaru" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdGrupyTowaru" Type="int" />
+          <Property Name="IdTypuTowaru" Type="int" />
+          <Property Name="IdJednostkiPodstawowej" Type="int" />
+          <Property Name="KodEAN" Type="nchar" MaxLength="13" />
+          <Property Name="StawkaVatSprzedazy" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="StawkaVatZakupu" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CzyAktywny" Type="bit" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="80" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <EntityType Name="TowaryJednostkiPodstawowe">
+          <Key>
+            <PropertyRef Name="IdTowaruJednostkiPodstawowej" />
+          </Key>
+          <Property Name="IdTowaruJednostkiPodstawowej" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTowaru" Type="int" />
+          <Property Name="IdJednostkiPodstawowej" Type="int" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+          <Property Name="CzyAktywny" Type="bit" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TypTowaru">
+          <Key>
+            <PropertyRef Name="IdTypuTowaru" />
+          </Key>
+          <Property Name="IdTypuTowaru" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaTypu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="KodTypu" Type="nchar" MaxLength="10" />
+          <Property Name="CzyAktywny" Type="bit" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="80" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <EntityType Name="Wojewodztwa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Zamowienie">
+          <Key>
+            <PropertyRef Name="IdZamowienia" />
+          </Key>
+          <Property Name="IdZamowienia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumerZamowienia" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="DataZlozenia" Type="date" />
+          <Property Name="DataRealizacji" Type="date" />
+          <Property Name="CzyOplacone" Type="varchar" MaxLength="20" />
+          <Property Name="IdKontrahenta" Type="int" />
+          <Property Name="IdTowaru" Type="int" />
+          <Property Name="IdMagazynu" Type="int" />
+          <Property Name="CzyPotwierdzone" Type="varchar" MaxLength="20" />
+          <Property Name="Wartosc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CzyAktywne" Type="bit" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="80" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <EntityType Name="Zwrot">
+          <Key>
+            <PropertyRef Name="IdZwrotu" />
+          </Key>
+          <Property Name="IdZwrotu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KodZwrotu" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IdFaktury" Type="int" Nullable="false" />
+          <Property Name="IdTowaru" Type="int" Nullable="false" />
+          <Property Name="IdKontrahenta" Type="int" Nullable="false" />
+          <Property Name="IdMagazynu" Type="int" Nullable="false" />
+          <Property Name="KwotaZwrotu" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CzyAktywny" Type="bit" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="Uwagi" Type="nvarchar" MaxLength="80" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoZmodyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KtoUsunal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyDodano" Type="date" />
+          <Property Name="KiedyZmodyfikowano" Type="date" />
+          <Property Name="KiedyUsunieto" Type="date" />
+        </EntityType>
+        <Association Name="FK_Cennik_RodzajCennika">
+          <End Role="RodzajCennika" Type="Self.RodzajCennika" Multiplicity="0..1" />
+          <End Role="Cennik" Type="Self.Cennik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajCennika">
+              <PropertyRef Name="IdRodzajuCennika" />
+            </Principal>
+            <Dependent Role="Cennik">
+              <PropertyRef Name="IdRodzajuCennika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cennik_Towar">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="Cennik" Type="Self.Cennik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="Cennik">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Cennik">
+          <End Role="Cennik" Type="Self.Cennik" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cennik">
+              <PropertyRef Name="IdCennika" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdCennika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_KategoriaFaktury">
+          <End Role="KategoriaFaktury" Type="Self.KategoriaFaktury" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KategoriaFaktury">
+              <PropertyRef Name="IdKategoriiFaktury" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKategoriiFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Kontrahent">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_PozycjaFaktury">
+          <End Role="PozycjaFaktury" Type="Self.PozycjaFaktury" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PozycjaFaktury">
+              <PropertyRef Name="IdPozycjiFaktury" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdPozycjiFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_SposobPlatnosci">
+          <End Role="SposobPlatnosci" Type="Self.SposobPlatnosci" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobPlatnosci">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Towar">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kontrahent_Branza">
+          <End Role="Branza" Type="Self.Branza" Multiplicity="0..1" />
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branza">
+              <PropertyRef Name="IdBranzy" />
+            </Principal>
+            <Dependent Role="Kontrahent">
+              <PropertyRef Name="IdBranzy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kontrahent_RodzajDzialalnosci">
+          <End Role="RodzajDzialalnosci" Type="Self.RodzajDzialalnosci" Multiplicity="0..1" />
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajDzialalnosci">
+              <PropertyRef Name="IdRodzajuDzialalnosci" />
+            </Principal>
+            <Dependent Role="Kontrahent">
+              <PropertyRef Name="IdRodzajuDzialalnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PozycjaFaktury_Towar">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="PozycjaFaktury" Type="Self.PozycjaFaktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="PozycjaFaktury">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Towar_GrupaTowaru">
+          <End Role="GrupaTowaru" Type="Self.GrupaTowaru" Multiplicity="0..1" />
+          <End Role="Towar" Type="Self.Towar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrupaTowaru">
+              <PropertyRef Name="IdGrupyTowaru" />
+            </Principal>
+            <Dependent Role="Towar">
+              <PropertyRef Name="IdGrupyTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Towar_JednostkaPodstawowa">
+          <End Role="JednostkaPodstawowa" Type="Self.JednostkaPodstawowa" Multiplicity="0..1" />
+          <End Role="Towar" Type="Self.Towar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JednostkaPodstawowa">
+              <PropertyRef Name="IdJednostkiPodstawowej" />
+            </Principal>
+            <Dependent Role="Towar">
+              <PropertyRef Name="IdJednostkiPodstawowej" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Towar_TypTowaru1">
+          <End Role="TypTowaru" Type="Self.TypTowaru" Multiplicity="0..1" />
+          <End Role="Towar" Type="Self.Towar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypTowaru">
+              <PropertyRef Name="IdTypuTowaru" />
+            </Principal>
+            <Dependent Role="Towar">
+              <PropertyRef Name="IdTypuTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TowaryJednostkiPodstawowe_JednostkaPodstawowa">
+          <End Role="JednostkaPodstawowa" Type="Self.JednostkaPodstawowa" Multiplicity="0..1" />
+          <End Role="TowaryJednostkiPodstawowe" Type="Self.TowaryJednostkiPodstawowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JednostkaPodstawowa">
+              <PropertyRef Name="IdJednostkiPodstawowej" />
+            </Principal>
+            <Dependent Role="TowaryJednostkiPodstawowe">
+              <PropertyRef Name="IdJednostkiPodstawowej" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Kontrahent1">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Magazyn1">
+          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="0..1" />
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyn">
+              <PropertyRef Name="IdMagazynu" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="IdMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Towar1">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zwrot_Faktura">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="Zwrot" Type="Self.Zwrot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="Zwrot">
+              <PropertyRef Name="IdFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zwrot_Kontrahent">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="1" />
+          <End Role="Zwrot" Type="Self.Zwrot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Zwrot">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zwrot_Magazyn">
+          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="1" />
+          <End Role="Zwrot" Type="Self.Zwrot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyn">
+              <PropertyRef Name="IdMagazynu" />
+            </Principal>
+            <Dependent Role="Zwrot">
+              <PropertyRef Name="IdMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zwrot_Towar">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="1" />
+          <End Role="Zwrot" Type="Self.Zwrot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="Zwrot">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InvoicesModelStoreContainer">
+          <EntitySet Name="Branza" EntityType="Self.Branza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cennik" EntityType="Self.Cennik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faktura" EntityType="Self.Faktura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrupaTowaru" EntityType="Self.GrupaTowaru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JednostkaPodstawowa" EntityType="Self.JednostkaPodstawowa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KategoriaFaktury" EntityType="Self.KategoriaFaktury" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kontrahent" EntityType="Self.Kontrahent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Magazyn" EntityType="Self.Magazyn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PozycjaFaktury" EntityType="Self.PozycjaFaktury" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RodzajCennika" EntityType="Self.RodzajCennika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RodzajDzialalnosci" EntityType="Self.RodzajDzialalnosci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SposobPlatnosci" EntityType="Self.SposobPlatnosci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Towar" EntityType="Self.Towar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TowaryJednostkiPodstawowe" EntityType="Self.TowaryJednostkiPodstawowe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypTowaru" EntityType="Self.TypTowaru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wojewodztwa" EntityType="Self.Wojewodztwa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zamowienie" EntityType="Self.Zamowienie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zwrot" EntityType="Self.Zwrot" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cennik_RodzajCennika" Association="Self.FK_Cennik_RodzajCennika">
+            <End Role="RodzajCennika" EntitySet="RodzajCennika" />
+            <End Role="Cennik" EntitySet="Cennik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cennik_Towar" Association="Self.FK_Cennik_Towar">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Cennik" EntitySet="Cennik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Cennik" Association="Self.FK_Faktura_Cennik">
+            <End Role="Cennik" EntitySet="Cennik" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_KategoriaFaktury" Association="Self.FK_Faktura_KategoriaFaktury">
+            <End Role="KategoriaFaktury" EntitySet="KategoriaFaktury" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Kontrahent" Association="Self.FK_Faktura_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_PozycjaFaktury" Association="Self.FK_Faktura_PozycjaFaktury">
+            <End Role="PozycjaFaktury" EntitySet="PozycjaFaktury" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_SposobPlatnosci" Association="Self.FK_Faktura_SposobPlatnosci">
+            <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Towar" Association="Self.FK_Faktura_Towar">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kontrahent_Branza" Association="Self.FK_Kontrahent_Branza">
+            <End Role="Branza" EntitySet="Branza" />
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kontrahent_RodzajDzialalnosci" Association="Self.FK_Kontrahent_RodzajDzialalnosci">
+            <End Role="RodzajDzialalnosci" EntitySet="RodzajDzialalnosci" />
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PozycjaFaktury_Towar" Association="Self.FK_PozycjaFaktury_Towar">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="PozycjaFaktury" EntitySet="PozycjaFaktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Towar_GrupaTowaru" Association="Self.FK_Towar_GrupaTowaru">
+            <End Role="GrupaTowaru" EntitySet="GrupaTowaru" />
+            <End Role="Towar" EntitySet="Towar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Towar_JednostkaPodstawowa" Association="Self.FK_Towar_JednostkaPodstawowa">
+            <End Role="JednostkaPodstawowa" EntitySet="JednostkaPodstawowa" />
+            <End Role="Towar" EntitySet="Towar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Towar_TypTowaru1" Association="Self.FK_Towar_TypTowaru1">
+            <End Role="TypTowaru" EntitySet="TypTowaru" />
+            <End Role="Towar" EntitySet="Towar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TowaryJednostkiPodstawowe_JednostkaPodstawowa" Association="Self.FK_TowaryJednostkiPodstawowe_JednostkaPodstawowa">
+            <End Role="JednostkaPodstawowa" EntitySet="JednostkaPodstawowa" />
+            <End Role="TowaryJednostkiPodstawowe" EntitySet="TowaryJednostkiPodstawowe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Kontrahent1" Association="Self.FK_Zamowienie_Kontrahent1">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Magazyn1" Association="Self.FK_Zamowienie_Magazyn1">
+            <End Role="Magazyn" EntitySet="Magazyn" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Towar1" Association="Self.FK_Zamowienie_Towar1">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zwrot_Faktura" Association="Self.FK_Zwrot_Faktura">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="Zwrot" EntitySet="Zwrot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zwrot_Kontrahent" Association="Self.FK_Zwrot_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Zwrot" EntitySet="Zwrot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zwrot_Magazyn" Association="Self.FK_Zwrot_Magazyn">
+            <End Role="Magazyn" EntitySet="Magazyn" />
+            <End Role="Zwrot" EntitySet="Zwrot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zwrot_Towar" Association="Self.FK_Zwrot_Towar">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Zwrot" EntitySet="Zwrot" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InvoicesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="InvoicesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Branza" EntityType="InvoicesModel.Branza" />
+          <EntitySet Name="Cennik" EntityType="InvoicesModel.Cennik" />
+          <EntitySet Name="Faktura" EntityType="InvoicesModel.Faktura" />
+          <EntitySet Name="GrupaTowaru" EntityType="InvoicesModel.GrupaTowaru" />
+          <EntitySet Name="JednostkaPodstawowa" EntityType="InvoicesModel.JednostkaPodstawowa" />
+          <EntitySet Name="KategoriaFaktury" EntityType="InvoicesModel.KategoriaFaktury" />
+          <EntitySet Name="Kontrahent" EntityType="InvoicesModel.Kontrahent" />
+          <EntitySet Name="Magazyn" EntityType="InvoicesModel.Magazyn" />
+          <EntitySet Name="PozycjaFaktury" EntityType="InvoicesModel.PozycjaFaktury" />
+          <EntitySet Name="RodzajDzialalnosci" EntityType="InvoicesModel.RodzajDzialalnosci" />
+          <EntitySet Name="SposobPlatnosci" EntityType="InvoicesModel.SposobPlatnosci" />
+          <EntitySet Name="sysdiagrams" EntityType="InvoicesModel.sysdiagrams" />
+          <EntitySet Name="Towar" EntityType="InvoicesModel.Towar" />
+          <EntitySet Name="TowaryJednostkiPodstawowe" EntityType="InvoicesModel.TowaryJednostkiPodstawowe" />
+          <EntitySet Name="TypTowaru" EntityType="InvoicesModel.TypTowaru" />
+          <EntitySet Name="Wojewodztwa" EntityType="InvoicesModel.Wojewodztwa" />
+          <EntitySet Name="Zamowienie" EntityType="InvoicesModel.Zamowienie" />
+          <EntitySet Name="Zwrot" EntityType="InvoicesModel.Zwrot" />
+          <AssociationSet Name="FK_Kontrahent_Branza" Association="InvoicesModel.FK_Kontrahent_Branza">
+            <End Role="Branza" EntitySet="Branza" />
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_KategoriaFaktury" Association="InvoicesModel.FK_Faktura_KategoriaFaktury">
+            <End Role="KategoriaFaktury" EntitySet="KategoriaFaktury" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Kontrahent" Association="InvoicesModel.FK_Faktura_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_PozycjaFaktury" Association="InvoicesModel.FK_Faktura_PozycjaFaktury">
+            <End Role="PozycjaFaktury" EntitySet="PozycjaFaktury" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_SposobPlatnosci" Association="InvoicesModel.FK_Faktura_SposobPlatnosci">
+            <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zwrot_Faktura" Association="InvoicesModel.FK_Zwrot_Faktura">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="Zwrot" EntitySet="Zwrot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Towar_GrupaTowaru" Association="InvoicesModel.FK_Towar_GrupaTowaru">
+            <End Role="GrupaTowaru" EntitySet="GrupaTowaru" />
+            <End Role="Towar" EntitySet="Towar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TowaryJednostkiPodstawowe_JednostkaPodstawowa" Association="InvoicesModel.FK_TowaryJednostkiPodstawowe_JednostkaPodstawowa">
+            <End Role="JednostkaPodstawowa" EntitySet="JednostkaPodstawowa" />
+            <End Role="TowaryJednostkiPodstawowe" EntitySet="TowaryJednostkiPodstawowe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kontrahent_RodzajDzialalnosci" Association="InvoicesModel.FK_Kontrahent_RodzajDzialalnosci">
+            <End Role="RodzajDzialalnosci" EntitySet="RodzajDzialalnosci" />
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Kontrahent1" Association="InvoicesModel.FK_Zamowienie_Kontrahent1">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zwrot_Kontrahent" Association="InvoicesModel.FK_Zwrot_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Zwrot" EntitySet="Zwrot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Magazyn1" Association="InvoicesModel.FK_Zamowienie_Magazyn1">
+            <End Role="Magazyn" EntitySet="Magazyn" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zwrot_Magazyn" Association="InvoicesModel.FK_Zwrot_Magazyn">
+            <End Role="Magazyn" EntitySet="Magazyn" />
+            <End Role="Zwrot" EntitySet="Zwrot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PozycjaFaktury_Towar" Association="InvoicesModel.FK_PozycjaFaktury_Towar">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="PozycjaFaktury" EntitySet="PozycjaFaktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Towar_TypTowaru1" Association="InvoicesModel.FK_Towar_TypTowaru1">
+            <End Role="TypTowaru" EntitySet="TypTowaru" />
+            <End Role="Towar" EntitySet="Towar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TowaryJednostkiPodstawowe_Towar1" Association="InvoicesModel.FK_TowaryJednostkiPodstawowe_Towar1">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="TowaryJednostkiPodstawowe" EntitySet="TowaryJednostkiPodstawowe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zamowienie_Towar1" Association="InvoicesModel.FK_Zamowienie_Towar1">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zwrot_Towar" Association="InvoicesModel.FK_Zwrot_Towar">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Zwrot" EntitySet="Zwrot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cennik_Towar" Association="InvoicesModel.FK_Cennik_Towar">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Cennik" EntitySet="Cennik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Cennik" Association="InvoicesModel.FK_Faktura_Cennik">
+            <End Role="Cennik" EntitySet="Cennik" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Towar_JednostkaPodstawowa" Association="InvoicesModel.FK_Towar_JednostkaPodstawowa">
+            <End Role="JednostkaPodstawowa" EntitySet="JednostkaPodstawowa" />
+            <End Role="Towar" EntitySet="Towar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Towar" Association="InvoicesModel.FK_Faktura_Towar">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <EntitySet Name="RodzajCennika" EntityType="InvoicesModel.RodzajCennika" />
+          <AssociationSet Name="FK_Cennik_RodzajCennika" Association="InvoicesModel.FK_Cennik_RodzajCennika">
+            <End Role="RodzajCennika" EntitySet="RodzajCennika" />
+            <End Role="Cennik" EntitySet="Cennik" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Branza">
+          <Key>
+            <PropertyRef Name="IdBranzy" />
+          </Key>
+          <Property Name="IdBranzy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaBranzy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KodBranzy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywna" Type="Boolean" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kontrahent" Relationship="InvoicesModel.FK_Kontrahent_Branza" FromRole="Branza" ToRole="Kontrahent" />
+        </EntityType>
+        <EntityType Name="Cennik">
+          <Key>
+            <PropertyRef Name="IdCennika" />
+          </Key>
+          <Property Name="IdCennika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cena" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DataObowiazywaniaOd" Type="DateTime" Precision="0" />
+          <Property Name="DataObowiazywaniaDo" Type="DateTime" Precision="0" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Uwagi" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <Property Name="NazwaCennika" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdTowaru" Type="Int32" />
+          <NavigationProperty Name="Towar" Relationship="InvoicesModel.FK_Cennik_Towar" FromRole="Cennik" ToRole="Towar" />
+          <NavigationProperty Name="Faktura" Relationship="InvoicesModel.FK_Faktura_Cennik" FromRole="Cennik" ToRole="Faktura" />
+          <Property Name="IdRodzajuCennika" Type="Int32" />
+          <NavigationProperty Name="RodzajCennika" Relationship="InvoicesModel.FK_Cennik_RodzajCennika" FromRole="Cennik" ToRole="RodzajCennika" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="IdFaktury" />
+          </Key>
+          <Property Name="IdFaktury" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumerFaktury" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IdKontrahenta" Type="Int32" />
+          <Property Name="IdKategoriiFaktury" Type="Int32" />
+          <Property Name="IdPozycjiFaktury" Type="Int32" />
+          <Property Name="IdSposobuPlatnosci" Type="Int32" />
+          <Property Name="DataWystawienia" Type="DateTime" Precision="0" />
+          <Property Name="DataSprzedazy" Type="DateTime" Precision="0" />
+          <Property Name="TerminPlatnosci" Type="DateTime" Precision="0" />
+          <Property Name="CzyAktywna" Type="Boolean" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="KategoriaFaktury" Relationship="InvoicesModel.FK_Faktura_KategoriaFaktury" FromRole="Faktura" ToRole="KategoriaFaktury" />
+          <NavigationProperty Name="Kontrahent" Relationship="InvoicesModel.FK_Faktura_Kontrahent" FromRole="Faktura" ToRole="Kontrahent" />
+          <NavigationProperty Name="PozycjaFaktury" Relationship="InvoicesModel.FK_Faktura_PozycjaFaktury" FromRole="Faktura" ToRole="PozycjaFaktury" />
+          <NavigationProperty Name="SposobPlatnosci" Relationship="InvoicesModel.FK_Faktura_SposobPlatnosci" FromRole="Faktura" ToRole="SposobPlatnosci" />
+          <NavigationProperty Name="Zwrot" Relationship="InvoicesModel.FK_Zwrot_Faktura" FromRole="Faktura" ToRole="Zwrot" />
+          <Property Name="IloscTowaru" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IdCennika" Type="Int32" />
+          <Property Name="Kwota" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Cennik" Relationship="InvoicesModel.FK_Faktura_Cennik" FromRole="Faktura" ToRole="Cennik" />
+          <Property Name="IdTowaru" Type="Int32" />
+          <NavigationProperty Name="Towar" Relationship="InvoicesModel.FK_Faktura_Towar" FromRole="Faktura" ToRole="Towar" />
+        </EntityType>
+        <EntityType Name="GrupaTowaru">
+          <Key>
+            <PropertyRef Name="IdGrupyTowaru" />
+          </Key>
+          <Property Name="IdGrupyTowaru" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaGrupyTowaru" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kod" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CzyAktywna" Type="Boolean" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Towar" Relationship="InvoicesModel.FK_Towar_GrupaTowaru" FromRole="GrupaTowaru" ToRole="Towar" />
+        </EntityType>
+        <EntityType Name="JednostkaPodstawowa">
+          <Key>
+            <PropertyRef Name="IdJednostkiPodstawowej" />
+          </Key>
+          <Property Name="IdJednostkiPodstawowej" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaJednostki" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="KodJednostki" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TowaryJednostkiPodstawowe" Relationship="InvoicesModel.FK_TowaryJednostkiPodstawowe_JednostkaPodstawowa" FromRole="JednostkaPodstawowa" ToRole="TowaryJednostkiPodstawowe" />
+          <NavigationProperty Name="Towar" Relationship="InvoicesModel.FK_Towar_JednostkaPodstawowa" FromRole="JednostkaPodstawowa" ToRole="Towar" />
+        </EntityType>
+        <EntityType Name="KategoriaFaktury">
+          <Key>
+            <PropertyRef Name="IdKategoriiFaktury" />
+          </Key>
+          <Property Name="IdKategoriiFaktury" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaKategorii" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KodKategorii" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywna" Type="Boolean" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Faktura" Relationship="InvoicesModel.FK_Faktura_KategoriaFaktury" FromRole="KategoriaFaktury" ToRole="Faktura" />
+        </EntityType>
+        <EntityType Name="Kontrahent">
+          <Key>
+            <PropertyRef Name="IdKontrahenta" />
+          </Key>
+          <Property Name="IdKontrahenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaKontrahenta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KodKontrahenta" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IdRodzajuDzialalnosci" Type="Int32" />
+          <Property Name="IdBranzy" Type="Int32" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <Property Name="NIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REGON" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PESEL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Uwagi" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AdresWWW" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Wojewodztwo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumerUlicy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NumerBudynku" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Poczta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Branza" Relationship="InvoicesModel.FK_Kontrahent_Branza" FromRole="Kontrahent" ToRole="Branza" />
+          <NavigationProperty Name="Faktura" Relationship="InvoicesModel.FK_Faktura_Kontrahent" FromRole="Kontrahent" ToRole="Faktura" />
+          <NavigationProperty Name="RodzajDzialalnosci" Relationship="InvoicesModel.FK_Kontrahent_RodzajDzialalnosci" FromRole="Kontrahent" ToRole="RodzajDzialalnosci" />
+          <NavigationProperty Name="Zamowienie" Relationship="InvoicesModel.FK_Zamowienie_Kontrahent1" FromRole="Kontrahent" ToRole="Zamowienie" />
+          <NavigationProperty Name="Zwrot" Relationship="InvoicesModel.FK_Zwrot_Kontrahent" FromRole="Kontrahent" ToRole="Zwrot" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Magazyn">
+          <Key>
+            <PropertyRef Name="IdMagazynu" />
+          </Key>
+          <Property Name="IdMagazynu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaMagazynu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RodzajMagazynu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Uwagi" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Wojewodztwo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumerUlicy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NumerBudynku" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Poczta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Zamowienie" Relationship="InvoicesModel.FK_Zamowienie_Magazyn1" FromRole="Magazyn" ToRole="Zamowienie" />
+          <NavigationProperty Name="Zwrot" Relationship="InvoicesModel.FK_Zwrot_Magazyn" FromRole="Magazyn" ToRole="Zwrot" />
+        </EntityType>
+        <EntityType Name="PozycjaFaktury">
+          <Key>
+            <PropertyRef Name="IdPozycjiFaktury" />
+          </Key>
+          <Property Name="IdPozycjiFaktury" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTowaru" Type="Int32" />
+          <Property Name="CenaNetto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CenaBrutto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rabat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CzyAktywna" Type="Boolean" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Uwagi" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Faktura" Relationship="InvoicesModel.FK_Faktura_PozycjaFaktury" FromRole="PozycjaFaktury" ToRole="Faktura" />
+          <NavigationProperty Name="Towar" Relationship="InvoicesModel.FK_PozycjaFaktury_Towar" FromRole="PozycjaFaktury" ToRole="Towar" />
+        </EntityType>
+        <EntityType Name="RodzajDzialalnosci">
+          <Key>
+            <PropertyRef Name="IdRodzajuDzialalnosci" />
+          </Key>
+          <Property Name="IdRodzajuDzialalnosci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaRodzajuDzialalnosci" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <Property Name="Uwagi" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Kontrahent" Relationship="InvoicesModel.FK_Kontrahent_RodzajDzialalnosci" FromRole="RodzajDzialalnosci" ToRole="Kontrahent" />
+        </EntityType>
+        <EntityType Name="SposobPlatnosci">
+          <Key>
+            <PropertyRef Name="IdSposobuPlatnosci" />
+          </Key>
+          <Property Name="IdSposobuPlatnosci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaSposobuPlatnosci" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <Property Name="Uwagi" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Faktura" Relationship="InvoicesModel.FK_Faktura_SposobPlatnosci" FromRole="SposobPlatnosci" ToRole="Faktura" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Towar">
+          <Key>
+            <PropertyRef Name="IdTowaru" />
+          </Key>
+          <Property Name="IdTowaru" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KodTowaru" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NazwaTowaru" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdGrupyTowaru" Type="Int32" />
+          <Property Name="IdTypuTowaru" Type="Int32" />
+          <Property Name="KodEAN" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+          <Property Name="StawkaVatSprzedazy" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="StawkaVatZakupu" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Uwagi" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="GrupaTowaru" Relationship="InvoicesModel.FK_Towar_GrupaTowaru" FromRole="Towar" ToRole="GrupaTowaru" />
+          <NavigationProperty Name="PozycjaFaktury" Relationship="InvoicesModel.FK_PozycjaFaktury_Towar" FromRole="Towar" ToRole="PozycjaFaktury" />
+          <NavigationProperty Name="TypTowaru" Relationship="InvoicesModel.FK_Towar_TypTowaru1" FromRole="Towar" ToRole="TypTowaru" />
+          <NavigationProperty Name="TowaryJednostkiPodstawowe" Relationship="InvoicesModel.FK_TowaryJednostkiPodstawowe_Towar1" FromRole="Towar" ToRole="TowaryJednostkiPodstawowe" />
+          <NavigationProperty Name="Zamowienie" Relationship="InvoicesModel.FK_Zamowienie_Towar1" FromRole="Towar" ToRole="Zamowienie" />
+          <NavigationProperty Name="Zwrot" Relationship="InvoicesModel.FK_Zwrot_Towar" FromRole="Towar" ToRole="Zwrot" />
+          <Property Name="IdJednostkiPodstawowej" Type="Int32" />
+          <NavigationProperty Name="Cennik" Relationship="InvoicesModel.FK_Cennik_Towar" FromRole="Towar" ToRole="Cennik" />
+          <NavigationProperty Name="JednostkaPodstawowa" Relationship="InvoicesModel.FK_Towar_JednostkaPodstawowa" FromRole="Towar" ToRole="JednostkaPodstawowa" />
+          <NavigationProperty Name="Faktura" Relationship="InvoicesModel.FK_Faktura_Towar" FromRole="Towar" ToRole="Faktura" />
+        </EntityType>
+        <EntityType Name="TowaryJednostkiPodstawowe">
+          <Key>
+            <PropertyRef Name="IdTowaruJednostkiPodstawowej" />
+          </Key>
+          <Property Name="IdTowaruJednostkiPodstawowej" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTowaru" Type="Int32" />
+          <Property Name="IdJednostkiPodstawowej" Type="Int32" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Uwagi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="JednostkaPodstawowa" Relationship="InvoicesModel.FK_TowaryJednostkiPodstawowe_JednostkaPodstawowa" FromRole="TowaryJednostkiPodstawowe" ToRole="JednostkaPodstawowa" />
+          <NavigationProperty Name="Towar" Relationship="InvoicesModel.FK_TowaryJednostkiPodstawowe_Towar1" FromRole="TowaryJednostkiPodstawowe" ToRole="Towar" />
+        </EntityType>
+        <EntityType Name="TypTowaru">
+          <Key>
+            <PropertyRef Name="IdTypuTowaru" />
+          </Key>
+          <Property Name="IdTypuTowaru" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaTypu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KodTypu" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <Property Name="Uwagi" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Towar" Relationship="InvoicesModel.FK_Towar_TypTowaru1" FromRole="TypTowaru" ToRole="Towar" />
+        </EntityType>
+        <EntityType Name="Wojewodztwa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Zamowienie">
+          <Key>
+            <PropertyRef Name="IdZamowienia" />
+          </Key>
+          <Property Name="IdZamowienia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumerZamowienia" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="DataZlozenia" Type="DateTime" Precision="0" />
+          <Property Name="DataRealizacji" Type="DateTime" Precision="0" />
+          <Property Name="CzyOplacone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdKontrahenta" Type="Int32" />
+          <Property Name="IdTowaru" Type="Int32" />
+          <Property Name="IdMagazynu" Type="Int32" />
+          <Property Name="CzyPotwierdzone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Wartosc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CzyAktywne" Type="Boolean" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Uwagi" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Kontrahent" Relationship="InvoicesModel.FK_Zamowienie_Kontrahent1" FromRole="Zamowienie" ToRole="Kontrahent" />
+          <NavigationProperty Name="Magazyn" Relationship="InvoicesModel.FK_Zamowienie_Magazyn1" FromRole="Zamowienie" ToRole="Magazyn" />
+          <NavigationProperty Name="Towar" Relationship="InvoicesModel.FK_Zamowienie_Towar1" FromRole="Zamowienie" ToRole="Towar" />
+        </EntityType>
+        <EntityType Name="Zwrot">
+          <Key>
+            <PropertyRef Name="IdZwrotu" />
+          </Key>
+          <Property Name="IdZwrotu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KodZwrotu" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IdFaktury" Type="Int32" Nullable="false" />
+          <Property Name="IdTowaru" Type="Int32" Nullable="false" />
+          <Property Name="IdKontrahenta" Type="Int32" Nullable="false" />
+          <Property Name="IdMagazynu" Type="Int32" Nullable="false" />
+          <Property Name="KwotaZwrotu" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Uwagi" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoZmodyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KtoUsunal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Faktura" Relationship="InvoicesModel.FK_Zwrot_Faktura" FromRole="Zwrot" ToRole="Faktura" />
+          <NavigationProperty Name="Kontrahent" Relationship="InvoicesModel.FK_Zwrot_Kontrahent" FromRole="Zwrot" ToRole="Kontrahent" />
+          <NavigationProperty Name="Magazyn" Relationship="InvoicesModel.FK_Zwrot_Magazyn" FromRole="Zwrot" ToRole="Magazyn" />
+          <NavigationProperty Name="Towar" Relationship="InvoicesModel.FK_Zwrot_Towar" FromRole="Zwrot" ToRole="Towar" />
+        </EntityType>
+        <Association Name="FK_Kontrahent_Branza">
+          <End Type="InvoicesModel.Branza" Role="Branza" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Kontrahent" Role="Kontrahent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branza">
+              <PropertyRef Name="IdBranzy" />
+            </Principal>
+            <Dependent Role="Kontrahent">
+              <PropertyRef Name="IdBranzy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_KategoriaFaktury">
+          <End Type="InvoicesModel.KategoriaFaktury" Role="KategoriaFaktury" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Faktura" Role="Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KategoriaFaktury">
+              <PropertyRef Name="IdKategoriiFaktury" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKategoriiFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Kontrahent">
+          <End Type="InvoicesModel.Kontrahent" Role="Kontrahent" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Faktura" Role="Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_PozycjaFaktury">
+          <End Type="InvoicesModel.PozycjaFaktury" Role="PozycjaFaktury" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Faktura" Role="Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PozycjaFaktury">
+              <PropertyRef Name="IdPozycjiFaktury" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdPozycjiFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_SposobPlatnosci">
+          <End Type="InvoicesModel.SposobPlatnosci" Role="SposobPlatnosci" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Faktura" Role="Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobPlatnosci">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zwrot_Faktura">
+          <End Type="InvoicesModel.Faktura" Role="Faktura" Multiplicity="1" />
+          <End Type="InvoicesModel.Zwrot" Role="Zwrot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="Zwrot">
+              <PropertyRef Name="IdFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Towar_GrupaTowaru">
+          <End Type="InvoicesModel.GrupaTowaru" Role="GrupaTowaru" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Towar" Role="Towar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrupaTowaru">
+              <PropertyRef Name="IdGrupyTowaru" />
+            </Principal>
+            <Dependent Role="Towar">
+              <PropertyRef Name="IdGrupyTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TowaryJednostkiPodstawowe_JednostkaPodstawowa">
+          <End Type="InvoicesModel.JednostkaPodstawowa" Role="JednostkaPodstawowa" Multiplicity="0..1" />
+          <End Type="InvoicesModel.TowaryJednostkiPodstawowe" Role="TowaryJednostkiPodstawowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JednostkaPodstawowa">
+              <PropertyRef Name="IdJednostkiPodstawowej" />
+            </Principal>
+            <Dependent Role="TowaryJednostkiPodstawowe">
+              <PropertyRef Name="IdJednostkiPodstawowej" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kontrahent_RodzajDzialalnosci">
+          <End Type="InvoicesModel.RodzajDzialalnosci" Role="RodzajDzialalnosci" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Kontrahent" Role="Kontrahent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajDzialalnosci">
+              <PropertyRef Name="IdRodzajuDzialalnosci" />
+            </Principal>
+            <Dependent Role="Kontrahent">
+              <PropertyRef Name="IdRodzajuDzialalnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Kontrahent1">
+          <End Type="InvoicesModel.Kontrahent" Role="Kontrahent" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Zamowienie" Role="Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zwrot_Kontrahent">
+          <End Type="InvoicesModel.Kontrahent" Role="Kontrahent" Multiplicity="1" />
+          <End Type="InvoicesModel.Zwrot" Role="Zwrot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Zwrot">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Magazyn1">
+          <End Type="InvoicesModel.Magazyn" Role="Magazyn" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Zamowienie" Role="Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyn">
+              <PropertyRef Name="IdMagazynu" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="IdMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zwrot_Magazyn">
+          <End Type="InvoicesModel.Magazyn" Role="Magazyn" Multiplicity="1" />
+          <End Type="InvoicesModel.Zwrot" Role="Zwrot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyn">
+              <PropertyRef Name="IdMagazynu" />
+            </Principal>
+            <Dependent Role="Zwrot">
+              <PropertyRef Name="IdMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PozycjaFaktury_Towar">
+          <End Type="InvoicesModel.Towar" Role="Towar" Multiplicity="0..1" />
+          <End Type="InvoicesModel.PozycjaFaktury" Role="PozycjaFaktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="PozycjaFaktury">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Towar_TypTowaru1">
+          <End Type="InvoicesModel.TypTowaru" Role="TypTowaru" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Towar" Role="Towar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypTowaru">
+              <PropertyRef Name="IdTypuTowaru" />
+            </Principal>
+            <Dependent Role="Towar">
+              <PropertyRef Name="IdTypuTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TowaryJednostkiPodstawowe_Towar1">
+          <End Type="InvoicesModel.Towar" Role="Towar" Multiplicity="0..1" />
+          <End Type="InvoicesModel.TowaryJednostkiPodstawowe" Role="TowaryJednostkiPodstawowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="TowaryJednostkiPodstawowe">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zamowienie_Towar1">
+          <End Type="InvoicesModel.Towar" Role="Towar" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Zamowienie" Role="Zamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="Zamowienie">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zwrot_Towar">
+          <End Type="InvoicesModel.Towar" Role="Towar" Multiplicity="1" />
+          <End Type="InvoicesModel.Zwrot" Role="Zwrot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="Zwrot">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cennik_Towar">
+          <End Type="InvoicesModel.Towar" Role="Towar" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Cennik" Role="Cennik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="Cennik">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Cennik">
+          <End Type="InvoicesModel.Cennik" Role="Cennik" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Faktura" Role="Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cennik">
+              <PropertyRef Name="IdCennika" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdCennika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Towar_JednostkaPodstawowa">
+          <End Type="InvoicesModel.JednostkaPodstawowa" Role="JednostkaPodstawowa" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Towar" Role="Towar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JednostkaPodstawowa">
+              <PropertyRef Name="IdJednostkiPodstawowej" />
+            </Principal>
+            <Dependent Role="Towar">
+              <PropertyRef Name="IdJednostkiPodstawowej" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Towar">
+          <End Type="InvoicesModel.Towar" Role="Towar" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Faktura" Role="Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RodzajCennika">
+          <Key>
+            <PropertyRef Name="IdRodzajuCennika" />
+          </Key>
+          <Property Name="IdRodzajuCennika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaRodzajuCennika" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Uwagi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="KtoDodal" Type="DateTime" Precision="0" />
+          <Property Name="KtoZmodyfikowal" Type="DateTime" Precision="0" />
+          <Property Name="KtoUsunal" Type="DateTime" Precision="0" />
+          <Property Name="KiedyDodano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyZmodyfikowano" Type="DateTime" Precision="0" />
+          <Property Name="KiedyUsunieto" Type="DateTime" Precision="0" />
+          <Property Name="CzyAktywny" Type="Boolean" />
+          <NavigationProperty Name="Cennik" Relationship="InvoicesModel.FK_Cennik_RodzajCennika" FromRole="RodzajCennika" ToRole="Cennik" />
+        </EntityType>
+        <Association Name="FK_Cennik_RodzajCennika">
+          <End Type="InvoicesModel.RodzajCennika" Role="RodzajCennika" Multiplicity="0..1" />
+          <End Type="InvoicesModel.Cennik" Role="Cennik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajCennika">
+              <PropertyRef Name="IdRodzajuCennika" />
+            </Principal>
+            <Dependent Role="Cennik">
+              <PropertyRef Name="IdRodzajuCennika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InvoicesModelStoreContainer" CdmEntityContainer="InvoicesEntities">
+          <EntitySetMapping Name="Branza">
+            <EntityTypeMapping TypeName="InvoicesModel.Branza">
+              <MappingFragment StoreEntitySet="Branza">
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="CzyAktywna" ColumnName="CzyAktywna" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="KodBranzy" ColumnName="KodBranzy" />
+                <ScalarProperty Name="NazwaBranzy" ColumnName="NazwaBranzy" />
+                <ScalarProperty Name="IdBranzy" ColumnName="IdBranzy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cennik">
+            <EntityTypeMapping TypeName="InvoicesModel.Cennik">
+              <MappingFragment StoreEntitySet="Cennik">
+                <ScalarProperty Name="IdRodzajuCennika" ColumnName="IdRodzajuCennika" />
+                <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
+                <ScalarProperty Name="NazwaCennika" ColumnName="NazwaCennika" />
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="DataObowiazywaniaDo" ColumnName="DataObowiazywaniaDo" />
+                <ScalarProperty Name="DataObowiazywaniaOd" ColumnName="DataObowiazywaniaOd" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="IdCennika" ColumnName="IdCennika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faktura">
+            <EntityTypeMapping TypeName="InvoicesModel.Faktura">
+              <MappingFragment StoreEntitySet="Faktura">
+                <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
+                <ScalarProperty Name="Kwota" ColumnName="Kwota" />
+                <ScalarProperty Name="IdCennika" ColumnName="IdCennika" />
+                <ScalarProperty Name="IloscTowaru" ColumnName="IloscTowaru" />
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="CzyAktywna" ColumnName="CzyAktywna" />
+                <ScalarProperty Name="TerminPlatnosci" ColumnName="TerminPlatnosci" />
+                <ScalarProperty Name="DataSprzedazy" ColumnName="DataSprzedazy" />
+                <ScalarProperty Name="DataWystawienia" ColumnName="DataWystawienia" />
+                <ScalarProperty Name="IdSposobuPlatnosci" ColumnName="IdSposobuPlatnosci" />
+                <ScalarProperty Name="IdPozycjiFaktury" ColumnName="IdPozycjiFaktury" />
+                <ScalarProperty Name="IdKategoriiFaktury" ColumnName="IdKategoriiFaktury" />
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+                <ScalarProperty Name="NumerFaktury" ColumnName="NumerFaktury" />
+                <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrupaTowaru">
+            <EntityTypeMapping TypeName="InvoicesModel.GrupaTowaru">
+              <MappingFragment StoreEntitySet="GrupaTowaru">
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="CzyAktywna" ColumnName="CzyAktywna" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="NazwaGrupyTowaru" ColumnName="NazwaGrupyTowaru" />
+                <ScalarProperty Name="IdGrupyTowaru" ColumnName="IdGrupyTowaru" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JednostkaPodstawowa">
+            <EntityTypeMapping TypeName="InvoicesModel.JednostkaPodstawowa">
+              <MappingFragment StoreEntitySet="JednostkaPodstawowa">
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KodJednostki" ColumnName="KodJednostki" />
+                <ScalarProperty Name="NazwaJednostki" ColumnName="NazwaJednostki" />
+                <ScalarProperty Name="IdJednostkiPodstawowej" ColumnName="IdJednostkiPodstawowej" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KategoriaFaktury">
+            <EntityTypeMapping TypeName="InvoicesModel.KategoriaFaktury">
+              <MappingFragment StoreEntitySet="KategoriaFaktury">
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="CzyAktywna" ColumnName="CzyAktywna" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="KodKategorii" ColumnName="KodKategorii" />
+                <ScalarProperty Name="NazwaKategorii" ColumnName="NazwaKategorii" />
+                <ScalarProperty Name="IdKategoriiFaktury" ColumnName="IdKategoriiFaktury" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kontrahent">
+            <EntityTypeMapping TypeName="InvoicesModel.Kontrahent">
+              <MappingFragment StoreEntitySet="Kontrahent">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Poczta" ColumnName="Poczta" />
+                <ScalarProperty Name="NumerBudynku" ColumnName="NumerBudynku" />
+                <ScalarProperty Name="NumerUlicy" ColumnName="NumerUlicy" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="Wojewodztwo" ColumnName="Wojewodztwo" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+                <ScalarProperty Name="AdresWWW" ColumnName="AdresWWW" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="PESEL" ColumnName="PESEL" />
+                <ScalarProperty Name="REGON" ColumnName="REGON" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="IdBranzy" ColumnName="IdBranzy" />
+                <ScalarProperty Name="IdRodzajuDzialalnosci" ColumnName="IdRodzajuDzialalnosci" />
+                <ScalarProperty Name="KodKontrahenta" ColumnName="KodKontrahenta" />
+                <ScalarProperty Name="NazwaKontrahenta" ColumnName="NazwaKontrahenta" />
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Magazyn">
+            <EntityTypeMapping TypeName="InvoicesModel.Magazyn">
+              <MappingFragment StoreEntitySet="Magazyn">
+                <ScalarProperty Name="Poczta" ColumnName="Poczta" />
+                <ScalarProperty Name="NumerBudynku" ColumnName="NumerBudynku" />
+                <ScalarProperty Name="NumerUlicy" ColumnName="NumerUlicy" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="Wojewodztwo" ColumnName="Wojewodztwo" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="RodzajMagazynu" ColumnName="RodzajMagazynu" />
+                <ScalarProperty Name="NazwaMagazynu" ColumnName="NazwaMagazynu" />
+                <ScalarProperty Name="IdMagazynu" ColumnName="IdMagazynu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PozycjaFaktury">
+            <EntityTypeMapping TypeName="InvoicesModel.PozycjaFaktury">
+              <MappingFragment StoreEntitySet="PozycjaFaktury">
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="CzyAktywna" ColumnName="CzyAktywna" />
+                <ScalarProperty Name="Rabat" ColumnName="Rabat" />
+                <ScalarProperty Name="CenaBrutto" ColumnName="CenaBrutto" />
+                <ScalarProperty Name="CenaNetto" ColumnName="CenaNetto" />
+                <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
+                <ScalarProperty Name="IdPozycjiFaktury" ColumnName="IdPozycjiFaktury" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RodzajDzialalnosci">
+            <EntityTypeMapping TypeName="InvoicesModel.RodzajDzialalnosci">
+              <MappingFragment StoreEntitySet="RodzajDzialalnosci">
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="NazwaRodzajuDzialalnosci" ColumnName="NazwaRodzajuDzialalnosci" />
+                <ScalarProperty Name="IdRodzajuDzialalnosci" ColumnName="IdRodzajuDzialalnosci" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SposobPlatnosci">
+            <EntityTypeMapping TypeName="InvoicesModel.SposobPlatnosci">
+              <MappingFragment StoreEntitySet="SposobPlatnosci">
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="NazwaSposobuPlatnosci" ColumnName="NazwaSposobuPlatnosci" />
+                <ScalarProperty Name="IdSposobuPlatnosci" ColumnName="IdSposobuPlatnosci" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="InvoicesModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Towar">
+            <EntityTypeMapping TypeName="InvoicesModel.Towar">
+              <MappingFragment StoreEntitySet="Towar">
+                <ScalarProperty Name="IdJednostkiPodstawowej" ColumnName="IdJednostkiPodstawowej" />
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="StawkaVatZakupu" ColumnName="StawkaVatZakupu" />
+                <ScalarProperty Name="StawkaVatSprzedazy" ColumnName="StawkaVatSprzedazy" />
+                <ScalarProperty Name="KodEAN" ColumnName="KodEAN" />
+                <ScalarProperty Name="IdTypuTowaru" ColumnName="IdTypuTowaru" />
+                <ScalarProperty Name="IdGrupyTowaru" ColumnName="IdGrupyTowaru" />
+                <ScalarProperty Name="NazwaTowaru" ColumnName="NazwaTowaru" />
+                <ScalarProperty Name="KodTowaru" ColumnName="KodTowaru" />
+                <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TowaryJednostkiPodstawowe">
+            <EntityTypeMapping TypeName="InvoicesModel.TowaryJednostkiPodstawowe">
+              <MappingFragment StoreEntitySet="TowaryJednostkiPodstawowe">
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="IdJednostkiPodstawowej" ColumnName="IdJednostkiPodstawowej" />
+                <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
+                <ScalarProperty Name="IdTowaruJednostkiPodstawowej" ColumnName="IdTowaruJednostkiPodstawowej" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypTowaru">
+            <EntityTypeMapping TypeName="InvoicesModel.TypTowaru">
+              <MappingFragment StoreEntitySet="TypTowaru">
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KodTypu" ColumnName="KodTypu" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="NazwaTypu" ColumnName="NazwaTypu" />
+                <ScalarProperty Name="IdTypuTowaru" ColumnName="IdTypuTowaru" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wojewodztwa">
+            <EntityTypeMapping TypeName="InvoicesModel.Wojewodztwa">
+              <MappingFragment StoreEntitySet="Wojewodztwa">
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zamowienie">
+            <EntityTypeMapping TypeName="InvoicesModel.Zamowienie">
+              <MappingFragment StoreEntitySet="Zamowienie">
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="CzyAktywne" ColumnName="CzyAktywne" />
+                <ScalarProperty Name="Wartosc" ColumnName="Wartosc" />
+                <ScalarProperty Name="CzyPotwierdzone" ColumnName="CzyPotwierdzone" />
+                <ScalarProperty Name="IdMagazynu" ColumnName="IdMagazynu" />
+                <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+                <ScalarProperty Name="CzyOplacone" ColumnName="CzyOplacone" />
+                <ScalarProperty Name="DataRealizacji" ColumnName="DataRealizacji" />
+                <ScalarProperty Name="DataZlozenia" ColumnName="DataZlozenia" />
+                <ScalarProperty Name="NumerZamowienia" ColumnName="NumerZamowienia" />
+                <ScalarProperty Name="IdZamowienia" ColumnName="IdZamowienia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zwrot">
+            <EntityTypeMapping TypeName="InvoicesModel.Zwrot">
+              <MappingFragment StoreEntitySet="Zwrot">
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KwotaZwrotu" ColumnName="KwotaZwrotu" />
+                <ScalarProperty Name="IdMagazynu" ColumnName="IdMagazynu" />
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+                <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
+                <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+                <ScalarProperty Name="KodZwrotu" ColumnName="KodZwrotu" />
+                <ScalarProperty Name="IdZwrotu" ColumnName="IdZwrotu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RodzajCennika">
+            <EntityTypeMapping TypeName="InvoicesModel.RodzajCennika">
+              <MappingFragment StoreEntitySet="RodzajCennika">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyUsunieto" ColumnName="KiedyUsunieto" />
+                <ScalarProperty Name="KiedyZmodyfikowano" ColumnName="KiedyZmodyfikowano" />
+                <ScalarProperty Name="KiedyDodano" ColumnName="KiedyDodano" />
+                <ScalarProperty Name="KtoUsunal" ColumnName="KtoUsunal" />
+                <ScalarProperty Name="KtoZmodyfikowal" ColumnName="KtoZmodyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="Uwagi" ColumnName="Uwagi" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="NazwaRodzajuCennika" ColumnName="NazwaRodzajuCennika" />
+                <ScalarProperty Name="IdRodzajuCennika" ColumnName="IdRodzajuCennika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="99a0696dd7a6479789fc5656bcc96cea" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="InvoicesModel.Branza" Width="1.5" PointX="0.75" PointY="18.875" />
+        <EntityTypeShape EntityType="InvoicesModel.Cennik" Width="2.625" PointX="10.5" PointY="8.5" />
+        <EntityTypeShape EntityType="InvoicesModel.Faktura" Width="1.5" PointX="7.5" PointY="13.875" />
+        <EntityTypeShape EntityType="InvoicesModel.GrupaTowaru" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="InvoicesModel.JednostkaPodstawowa" Width="1.5" PointX="6" PointY="3.875" />
+        <EntityTypeShape EntityType="InvoicesModel.KategoriaFaktury" Width="1.5" PointX="5.25" PointY="23.875" />
+        <EntityTypeShape EntityType="InvoicesModel.Kontrahent" Width="1.5" PointX="3" PointY="14.75" />
+        <EntityTypeShape EntityType="InvoicesModel.Magazyn" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="InvoicesModel.PozycjaFaktury" Width="1.5" PointX="5.25" PointY="14.375" />
+        <EntityTypeShape EntityType="InvoicesModel.RodzajDzialalnosci" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="InvoicesModel.SposobPlatnosci" Width="1.5" PointX="5.25" PointY="19.75" />
+        <EntityTypeShape EntityType="InvoicesModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="1.75" />
+        <EntityTypeShape EntityType="InvoicesModel.Towar" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="InvoicesModel.TowaryJednostkiPodstawowe" Width="1.875" PointX="7.625" PointY="8.5" />
+        <EntityTypeShape EntityType="InvoicesModel.TypTowaru" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="InvoicesModel.Wojewodztwa" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="InvoicesModel.Zamowienie" Width="1.5" PointX="5.25" PointY="7.875" />
+        <EntityTypeShape EntityType="InvoicesModel.Zwrot" Width="1.5" PointX="9.75" PointY="13.875" />
+        <AssociationConnector Association="InvoicesModel.FK_Kontrahent_Branza" />
+        <AssociationConnector Association="InvoicesModel.FK_Faktura_KategoriaFaktury" />
+        <AssociationConnector Association="InvoicesModel.FK_Faktura_Kontrahent" />
+        <AssociationConnector Association="InvoicesModel.FK_Faktura_PozycjaFaktury" />
+        <AssociationConnector Association="InvoicesModel.FK_Faktura_SposobPlatnosci" />
+        <AssociationConnector Association="InvoicesModel.FK_Zwrot_Faktura" />
+        <AssociationConnector Association="InvoicesModel.FK_Towar_GrupaTowaru" />
+        <AssociationConnector Association="InvoicesModel.FK_TowaryJednostkiPodstawowe_JednostkaPodstawowa" />
+        <AssociationConnector Association="InvoicesModel.FK_Kontrahent_RodzajDzialalnosci" />
+        <AssociationConnector Association="InvoicesModel.FK_Zamowienie_Kontrahent1" />
+        <AssociationConnector Association="InvoicesModel.FK_Zwrot_Kontrahent" />
+        <AssociationConnector Association="InvoicesModel.FK_Zamowienie_Magazyn1" />
+        <AssociationConnector Association="InvoicesModel.FK_Zwrot_Magazyn" />
+        <AssociationConnector Association="InvoicesModel.FK_PozycjaFaktury_Towar" />
+        <AssociationConnector Association="InvoicesModel.FK_Towar_TypTowaru1" />
+        <AssociationConnector Association="InvoicesModel.FK_TowaryJednostkiPodstawowe_Towar1" />
+        <AssociationConnector Association="InvoicesModel.FK_Zamowienie_Towar1" />
+        <AssociationConnector Association="InvoicesModel.FK_Zwrot_Towar" />
+        <AssociationConnector Association="InvoicesModel.FK_Cennik_Towar" />
+        <AssociationConnector Association="InvoicesModel.FK_Faktura_Cennik" />
+        <AssociationConnector Association="InvoicesModel.FK_Towar_JednostkaPodstawowa" />
+        <AssociationConnector Association="InvoicesModel.FK_Faktura_Towar" />
+        <EntityTypeShape EntityType="InvoicesModel.RodzajCennika" Width="1.5" PointX="11.375" PointY="1" />
+        <AssociationConnector Association="InvoicesModel.FK_Cennik_RodzajCennika" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,159 @@
+﻿<Window x:Class="Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project"
+        xmlns:resx="clr-namespace:Project.ViewResources"
+        xmlns:ViewModels="clr-namespace:Project.ViewModels" 
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+
+        mc:Ignorable="d"
+        Title="Program" Height="800" Width="1500"
+        WindowState="Normal">
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml">            
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.DataContext>
+        <ViewModels:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key ="K" Command="{Binding NewClientCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="B" Command="{Binding NewTermbaseCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="P" Command="{Binding NewProjectCommand}"/>
+        <KeyBinding Modifiers="Alt" Key="K" Command="{Binding AllClientsCommand}"/>
+        <KeyBinding Modifiers="Alt" Key="B" Command="{Binding AllTermbasesCommand}"/>
+        <KeyBinding Modifiers="Alt" Key="P" Command="{Binding AllProductsCommand}"/>
+    </Window.InputBindings>
+
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Grid.Column="0" Margin="3">
+            <MenuItem Header="{x:Static resx:GlobalResources.Towar}">
+                <MenuItem Header="Nowy" InputGestureText="Ctrl+P" Command="{Binding NewTowarCommand}"/>
+                <MenuItem Header="Wszystkie" InputGestureText="Alt+P" Command="{Binding AllProductsCommand}" />
+            </MenuItem>
+            <MenuItem Header="{x:Static resx:GlobalResources.Kontrahent}">
+                <MenuItem Header="Klienci">
+                    <MenuItem Header="Nowy" InputGestureText="Ctrl+K" Command="{Binding NewClientCommand}"/>
+                    <MenuItem Header="Wszyscy" InputGestureText="Alt+K" Command="{Binding AllClientsCommand}"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="{x:Static resx:GlobalResources.Faktura}">
+                <MenuItem Header="Nowa" InputGestureText="Ctrl+B" Command="{Binding NewInvoiceCommand}"/>
+                <MenuItem Header="Wszystkie" InputGestureText="Alt+B" Command="{Binding AllInvoicesCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Pokaż/zwiń menu" Command="{Binding ShowHideSideMenuAsyncCommand, IsAsync=True}"/>
+        </Menu>
+
+        <ToolBar Grid.Row="1" Grid.Column="0"> 
+            <ToolBar.Background>
+                <ImageBrush ImageSource="/Views/Icons/backgroundMenu.png"/>
+            </ToolBar.Background>
+            <ToggleButton Width="32" Height="32" Margin="2" Command="{Binding NewInvoiceCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="/Views/Icons/addProject64px.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton Width="32" Height="32" Margin="2"  Command="{Binding AllInvoicesCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="/Views/Icons/allProjects64px.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton Width="32" Height="32" Margin="2"  Command="{Binding NewClientCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="/Views/Icons/client64px.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton Width="32" Height="32" Margin="2"  Command="{Binding AllClientsCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="/Views/Icons/allClients64px.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton Width="32" Height="32" Margin="2" Command="{Binding NewTowarCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="/Views/Icons/add-product.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton Width="32" Height="32" Margin="2" Command="{Binding AllTowarCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="/Views/Icons/products-all.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton Width="32" Height="32" Margin="2" Command="{Binding NewCennikCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="/Views/Icons/pricelist.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton Width="32" Height="32" Margin="2" Command="{Binding AllCennikCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="/Views/Icons/pricelist-all.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton Width="32" Height="32" Margin="2" Command="{Binding NewMagazynCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="/Views/Icons/magazyn-add.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton Width="32" Height="32" Margin="2" Command="{Binding AllMagazynCommand}">
+                <ToggleButton.Background>
+                    <ImageBrush ImageSource="/Views/Icons/magazyn-all.png"/>
+                </ToggleButton.Background>
+            </ToggleButton>
+        </ToolBar>        
+
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding SideMenuWidth}"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Margin="3,3,3,3">
+                <Border Grid.Column="0" Width="Auto" Margin="3,3,3,3">
+                <HeaderedContentControl
+                    Background="White"
+                    Content="{Binding Commands}"
+                    ContentTemplate="{StaticResource CommandsTemplate}"
+                    Style="{StaticResource MainHCCStyle}"
+                    />
+
+            </Border>
+            </ScrollViewer>
+            <Border Grid.Column="1">
+                <HeaderedContentControl                   
+                    Background="White"
+                    Content="{Binding Workspaces}"
+                    ContentTemplate="{StaticResource WorkspacesTemplate}"
+                    Style="{StaticResource MainHCCStyle}" Header=""
+                    />
+
+            </Border>
+        </Grid>
+
+        <StatusBar Grid.Row="3">
+            <StatusBarItem>
+                <TextBlock><Run Language="pl-pl" Text="Aleksandra Białek | WSB-NLU"/></TextBlock>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock Text="{Binding CurrentTime, StringFormat='dd/MM/yyyy HH:mm:ss'}" Margin="3" />
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>

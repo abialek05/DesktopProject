@@ -1,0 +1,83 @@
+﻿<local:OneViewBase x:Class="Project.Views.NewCennikView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Project.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="TabResources.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="415"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Nazwa cennika: " Grid.Row="0"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="400" Text="{Binding Path=NazwaCennika, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Validation.ErrorTemplate="{StaticResource ValidationTemplate}" ToolTipService.IsEnabled="False"/>
+        
+        <Label Content="Rodzaj cennika: " Grid.Row="1" />
+        <ComboBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Width="400" HorizontalAlignment="left" 
+                                      ItemsSource="{Binding RodzajCennikaComboBoxItems}"
+                                      DisplayMemberPath="Value"
+                                      SelectedValuePath="Key"
+                                      SelectedValue="{Binding Path = IdRodzajuCennika}"/>
+        <Button Grid.Column="2" Grid.Row="1" Content="..." Margin="0,5,5,5" Width="40" HorizontalAlignment="Left"  />
+
+        <Label Content="Towar: " Grid.Row="2" />
+        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" Width="400" HorizontalAlignment="left" 
+                                      ItemsSource="{Binding TowarComboBoxItems}"
+                                      DisplayMemberPath="Value"
+                                      SelectedValuePath="Key"
+                                      SelectedValue="{Binding Path = IdTowaru}"/>
+        <Button Grid.Column="2" Grid.Row="2" Content="..." Margin="0,5,5,5" Width="40" HorizontalAlignment="Left"  />
+
+        <Label Content="Cena jednostki:" Grid.Row="3"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Width="400" Text="{Binding Path=Cena, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Validation.ErrorTemplate="{StaticResource ValidationTemplate}" ToolTipService.IsEnabled="False"/>
+
+
+
+        <Grid Grid.Row="4" Grid.ColumnSpan="2" Margin="40,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Data obowiązywania" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+            <Label Content="od:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"/>
+            <DatePicker Grid.Column="2" Grid.Row="1" HorizontalAlignment="left" Margin="0,8,0,8" SelectedDate="{Binding Path = DataObowiazywaniaOd}"/>
+            <Label Content="do:" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="1"/>
+            <DatePicker Grid.Column="4" Grid.Row="1" HorizontalAlignment="left" Margin="0,8,0,8" SelectedDate="{Binding Path = DataObowiazywaniaDo}"/>
+        </Grid>
+        <Grid Grid.Row="4" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <Label Content="Opis: " Grid.Row="5"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Width="400" Text="{Binding Path=Opis, UpdateSourceTrigger=PropertyChanged}" />
+        
+        <Label Content="Uwagi: " Grid.Row="6"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Width="400" Text="{Binding Path=Uwagi, UpdateSourceTrigger=PropertyChanged}" />
+    </Grid>
+</local:OneViewBase>
